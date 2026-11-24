@@ -903,6 +903,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   #moreNavMenu{display:none!important}
   #topActionsMenu{display:none!important}
 }
+
+.physical-evolution-panel{display:grid;gap:14px;margin-bottom:20px}.pe-summary{padding:20px;border:1px solid #40304f;border-radius:18px;background:linear-gradient(145deg,#201829,#121017)}.pe-summary h3{margin:5px 0 12px}.pe-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.pe-stat{padding:13px;border:1px solid #3b3047;border-radius:13px;background:#17131e}.pe-stat small{display:block;color:#a99ab7;font-size:10px}.pe-stat strong{display:block;font-size:21px;margin:5px 0}.pe-stat span{font-size:11px;color:#b5a7c1}.pe-positive{color:#8fe0b1!important}.pe-negative{color:#f2a3a3!important}.pe-neutral{color:#d6c5e7!important}.pe-table{width:100%;border-collapse:collapse;font-size:12px}.pe-table th,.pe-table td{padding:10px;text-align:left;border-bottom:1px solid #332a3c}.pe-table th{color:#b8a6cb;font-size:10px}.pe-chart{padding:15px;border:1px solid #332a3c;border-radius:15px;background:#15121a}.pe-chart h4{margin:0 0 8px}.pe-chart svg{width:100%;height:120px;overflow:visible}.pe-chart-labels{display:flex;justify-content:space-between;color:#958a9f;font-size:10px}.pe-charts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.pe-note{color:#aaa0b3;font-size:11px;line-height:1.55}.pe-empty{padding:16px;border:1px solid #332a3c;border-radius:15px;color:#a99ab7;font-size:12px}@media(max-width:760px){.pe-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pe-charts{grid-template-columns:1fr}.pe-table{font-size:10px}.pe-table th,.pe-table td{padding:8px 5px}}
+
 </style>
 
 <style id="caverna-neon-noir-refresh">
@@ -1073,6 +1076,8 @@ button.primary{background:linear-gradient(135deg,#9b55df,#6735a1)!important;bord
   <div><span class="physical-kicker">ACOMPANHAMENTO CORPORAL</span><h2>Evolução física</h2><p class="sub">Suas medidas, sua evolução. Registre e acompanhe cada etapa.</p></div>
   <div class="physical-date-chip">◷ <span id="physicalLatestLabel">Avaliações e histórico</span></div>
  </div>
+ <div id="physicalEvolutionPanel" class="physical-evolution-panel"></div>
+
  <div class="physical-profile-card">
   <div class="physical-profile-copy"><span class="physical-kicker">01 · PERFIL</span><h3>Como deseja visualizar seu mapa corporal?</h3><p>Escolha o modelo de silhueta para orientar o registro das medidas. Isso não altera seus dados ou cálculos.</p>
    <label for="bodyGender">Modelo corporal</label>
@@ -1587,6 +1592,26 @@ function renderBodyFigure(gender){
  const label=female?"feminino":"masculino";
  figure.innerHTML=`<div class="real-human-model"><img src="${src}" alt="Modelo corporal humano ${label}" loading="eager"><span class="real-model-caption">MODELO CORPORAL · VISTA FRONTAL</span></div>`;
 }
+function renderPhysicalEvolution(){
+ const panel=$("physicalEvolutionPanel");if(!panel)return;
+ const records=(data.body||[]).slice().filter(x=>x.date).sort((a,b)=>a.date.localeCompare(b.date));
+ if(records.length<1){panel.innerHTML='<div class="pe-empty">Registre sua primeira avaliação para começar a acompanhar o progresso desde o marco inicial.</div>';return}
+ const fields=[["weight","Peso","kg",true],["bodyFat","Gordura corporal","%",true],["bodyNeck","Pescoço","cm",false],["bodyShoulders","Ombros","cm",false],["bodyChest","Tórax / peito","cm",false],["bodyWaist","Cintura","cm",false],["bodyAbdomen","Abdômen","cm",false],["bodyHips","Quadril","cm",false],["bodyBicepsRight","Bíceps direito","cm",false],["bodyBicepsLeft","Bíceps esquerdo","cm",false],["bodyForearmRight","Antebraço direito","cm",false],["bodyForearmLeft","Antebraço esquerdo","cm",false],["bodyThighRight","Coxa direita","cm",false],["bodyThighLeft","Coxa esquerda","cm",false],["bodyCalfRight","Panturrilha direita","cm",false],["bodyCalfLeft","Panturrilha esquerda","cm",false]];
+ const val=(r,f)=>{let v=f==='weight'?(r.weight??r.bodyWeight):r[f];return v===''||v==null||!Number.isFinite(Number(v))?null:Number(v)};
+ const initial=records[0],latest=records[records.length-1],previous=records.length>1?records[records.length-2]:null;
+ const dateFmt=d=>{try{return new Date(d+'T12:00:00').toLocaleDateString('pt-BR')}catch{return d}};
+ const delta=(a,b)=>a==null||b==null?null:b-a;
+ const fmt=(n,unit)=>n==null?'—':(n>0?'+':'')+n.toLocaleString('pt-BR',{maximumFractionDigits:1})+' '+unit;
+ const weight0=val(initial,'weight'),weightNow=val(latest,'weight'),weightPrev=previous?val(previous,'weight'):null;
+ const fat0=val(initial,'bodyFat'),fatNow=val(latest,'bodyFat'),fatPrev=previous?val(previous,'bodyFat'):null;
+ const metric=(label,start,prev,now,unit,reverse=false)=>{let d0=delta(start,now),dp=delta(prev,now);let good=(d)=>d==null?'pe-neutral':(reverse?d>0:d<0)?'pe-positive':d===0?'pe-neutral':'pe-negative';return `<tr><td>${label}</td><td>${start==null?'—':start+' '+unit}</td><td>${prev==null?'—':prev+' '+unit}</td><td>${now==null?'—':now+' '+unit}</td><td class="${good(d0)}">${fmt(d0,unit)}</td><td class="${good(dp)}">${fmt(dp,unit)}</td></tr>`};
+ const card=(label,v,change,unit,reverse=false)=>{let cls=change==null?'pe-neutral':(reverse?change>0:change<0)?'pe-positive':change===0?'pe-neutral':'pe-negative';return `<div class="pe-stat"><small>${label}</small><strong>${v==null?'—':v+' '+unit}</strong><span class="${cls}">${change==null?'Sem comparação':fmt(change,unit)}</span></div>`};
+ const chart=(title,key,unit)=>{let pts=records.map(r=>({date:r.date,v:val(r,key)})).filter(x=>x.v!=null);if(pts.length<2)return `<div class="pe-chart"><h4>${title}</h4><p class="pe-note">Registre pelo menos duas avaliações com este dado para gerar o gráfico.</p></div>`;let min=Math.min(...pts.map(x=>x.v)),max=Math.max(...pts.map(x=>x.v)),range=max-min||1;let coords=pts.map((x,i)=>`${i*100/(pts.length-1)},${100-((x.v-min)/range*80+10)}`).join(' ');return `<div class="pe-chart"><h4>${title}</h4><svg viewBox="0 0 100 120" preserveAspectRatio="none"><polyline points="${coords}" fill="none" stroke="#b58be5" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${100}" cy="${100-((pts[-1].v-min)/range*80+10)}" r="2.5" fill="#e4caff"/></svg><div class="pe-chart-labels"><span>${dateFmt(pts[0].date)} · ${pts[0].v} ${unit}</span><span>${dateFmt(pts[pts.length-1].date)} · ${pts[pts.length-1].v} ${unit}</span></div></div>`};
+ let narrative='';if(weight0!=null&&weightNow!=null){let d=weightNow-weight0;narrative=`Desde ${dateFmt(initial.date)}, seu peso ${d<0?'reduziu '+Math.abs(d).toLocaleString('pt-BR',{maximumFractionDigits:1})+' kg':d>0?'aumentou '+d.toLocaleString('pt-BR',{maximumFractionDigits:1})+' kg':'permanece igual'}.`;if(previous&&weightPrev!=null)narrative+=` Em relação à avaliação de ${dateFmt(previous.date)}, ${weightNow-weightPrev<0?'houve redução de '+Math.abs(weightNow-weightPrev).toLocaleString('pt-BR',{maximumFractionDigits:1})+' kg':weightNow-weightPrev>0?'houve aumento de '+(weightNow-weightPrev).toLocaleString('pt-BR',{maximumFractionDigits:1})+' kg':'não houve alteração de peso'}.`}
+ let rows=fields.filter(f=>records.some(r=>val(r,f[0])!=null)).map(f=>metric(f[1],val(initial,f[0]),previous?val(previous,f[0]):null,val(latest,f[0]),f[2],f[3])).join('');
+ panel.innerHTML=`<div class="pe-summary"><span class="physical-kicker">PROGRESSO · COMPARATIVO</span><h3>Seu progresso físico</h3><p class="pe-note">${narrative||'Compare seus dados entre as avaliações.'}</p><div class="pe-grid">${card('Peso atual',weightNow,delta(weight0,weightNow),'kg')}${card('Desde o início',weightNow,delta(weight0,weightNow),'kg')}${card('Desde a última',weightNow,delta(weightPrev,weightNow),'kg')}${card('Gordura atual',fatNow,delta(fat0,fatNow),'%',true)}${card('Gordura desde início',fatNow,delta(fat0,fatNow),'%',true)}${card('Gordura desde última',fatNow,delta(fatPrev,fatNow),'%',true)}</div><p class="pe-note">Marco inicial: ${dateFmt(initial.date)} · Última avaliação: ${previous?dateFmt(previous.date):'ainda não existe avaliação anterior'} · Atual: ${dateFmt(latest.date)}</p></div><div class="pe-charts">${chart('Trajetória do peso','weight','kg')}${chart('Percentual de gordura','bodyFat','%')}</div><div class="card"><div class="physical-section-heading"><div><span class="physical-kicker">COMPARAÇÃO DE MEDIDAS</span><h3>Inicial · Última · Atual</h3></div></div><div style="overflow-x:auto"><table class="pe-table"><thead><tr><th>Indicador</th><th>Inicial</th><th>Anterior</th><th>Atual</th><th>Desde início</th><th>Desde anterior</th></tr></thead><tbody>${rows}</tbody></table></div><p class="pe-note">Valores positivos/negativos indicam variação numérica; nas medidas de circunferência e peso, redução aparece em verde. Percentual de gordura também favorece redução.</p></div>`;
+}
+
 function renderPhysical(){
  const measureFields=[
  ["bodyFat","Gordura corporal","%"],["bodyNeck","Pescoço","cm"],["bodyChest","Tórax / peito","cm"],["bodyShoulders","Ombros","cm"],["bodyWaist","Cintura","cm"],["bodyAbdomen","Abdômen","cm"],["bodyHips","Quadril","cm"],
@@ -1595,6 +1620,7 @@ function renderPhysical(){
  const gender=data.profile?.bodyGender||"";
  const genderSelect=$("bodyGender");if(genderSelect&&genderSelect.value!==gender)genderSelect.value=gender;
  renderBodyFigure(gender);
+ renderPhysicalEvolution();
  const latest=data.body.slice().sort((a,b)=>(b.date||"").localeCompare(a.date||""))[0];
  $("physicalLatestLabel").textContent=latest?`Última avaliação: ${latest.date}`:"Avaliações e histórico";
  $("bodyRecordCount").textContent=data.body.length+" avaliação(ões)";
