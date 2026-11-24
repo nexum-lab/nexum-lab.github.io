@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#09090d">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="icon" type="image/png" href="./icon-192.png">
@@ -861,6 +861,48 @@ nav button[data-page="mentor"]{margin:0}
  #page-training .training-action-body{padding:13px}
 }
 
+
+/* VISUAL REFINEMENT ROUND — mobile-first, behavior-preserving */
+:root{--tap-min:44px}
+button,input,select,textarea{font-size:14px}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:3px solid #a78bfa;outline-offset:3px}
+.habit{min-height:var(--tap-min);cursor:pointer;transition:background .18s,transform .18s;border-radius:12px;padding:12px 10px}
+.habit:active{transform:scale(.985)}
+.habit input[type=checkbox]{width:24px;height:24px;min-width:24px}
+.dashboard-welcome{min-height:0!important;padding:16px 18px!important;margin-bottom:12px!important}
+.dashboard-welcome h2{font-size:clamp(22px,3vw,32px)!important}
+.dashboard-eyebrow{font-size:10px!important}
+.dashboard-orb{display:none!important}
+.dashboard-shortcuts{display:none!important}
+.stats{margin:8px 0 12px!important}
+.stats .stat{padding:12px!important}
+.stats .stat span{font-size:11px!important;letter-spacing:normal!important}
+.top{position:relative;align-items:center}
+.top .actions{display:flex;align-items:center;gap:8px;position:relative}
+.top-actions-menu,.more-nav-menu{position:absolute;z-index:1000;background:#17151d;border:1px solid #393342;border-radius:14px;padding:8px;box-shadow:0 12px 40px #0008;display:flex;flex-direction:column;gap:6px}
+.top-actions-menu{right:0;top:calc(100% + 8px)}
+.more-nav-menu{bottom:calc(100% + 8px);right:8px;left:8px;max-height:65vh;overflow:auto}
+.top-actions-menu button,.more-nav-menu button{width:100%;min-height:44px;text-align:left}
+.hidden{display:none!important}
+@media(max-width:760px){
+  body{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
+  #appShell .shell{padding-bottom:calc(14px + env(safe-area-inset-bottom))}
+  nav#nav{position:fixed!important;left:8px!important;right:8px!important;bottom:calc(8px + env(safe-area-inset-bottom))!important;top:auto!important;width:auto!important;z-index:999!important;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:5px!important;padding:8px!important;border-radius:18px!important;background:#111116f2!important;backdrop-filter:blur(16px);box-shadow:0 8px 30px #0009!important;overflow:visible!important}
+  nav#nav::before{display:none!important}
+  nav#nav button{min-width:0!important;width:100%!important;flex:unset!important;min-height:48px!important;padding:6px 2px!important;font-size:10px!important;white-space:normal!important;line-height:1.15!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important}
+  nav#nav button[data-page="today"],nav#nav button[data-page="habits"],nav#nav button[data-page="training"],nav#nav button[data-page="physical"]{display:flex!important}
+  nav#nav button[data-page="mentor"],nav#nav button[data-page="independencia"],nav#nav button[data-page="books"],nav#nav button[data-page="gratitude"],nav#nav button[data-page="failures"],nav#nav button[data-page="settings"],nav#nav button[data-page="admin"]{display:none!important}
+  nav#nav button#moreNavBtn{display:flex!important}
+  nav#nav button::before{font-size:18px!important;margin:0 0 3px!important;width:auto!important;height:auto!important;border:0!important;box-shadow:none!important}
+  .dashboard-welcome{padding:14px!important}
+  .dashboard-welcome .dashboard-mantra{display:none}
+  .dashboard-welcome h2{margin-bottom:2px!important}
+  .top .actions #logoutBtn,.top .actions #exportBtn,.top .actions #importBtn{display:none}
+}
+@media(min-width:761px){
+  #moreNavMenu{display:none!important}
+  #topActionsMenu{display:none!important}
+}
 </style>
 
 <style id="caverna-neon-noir-refresh">
@@ -973,7 +1015,7 @@ button.primary{background:linear-gradient(135deg,#9b55df,#6735a1)!important;bord
 <div id="appShell"><div class="shell">
 <header class="top">
   <div class="brand"><div class="mark">⌁</div><div><h1>CAVERNA</h1><p>DISCIPLINA · EVOLUÇÃO</p></div></div>
-  <div class="actions"><span id="userEmail" class="meta"></span><span id="syncStatus" class="sync-badge" role="status" aria-live="polite" tabindex="0" title="Toque para tentar sincronizar agora"></span><button id="logoutBtn" class="small">Sair</button><button id="exportBtn" class="small">Exportar dados</button><button id="importBtn" class="small">Importar</button><input id="importFile" type="file" accept="application/json" class="hidden"></div>
+  <div class="actions"><span id="userEmail" class="meta"></span><span id="syncStatus" class="sync-badge" role="status" aria-live="polite" tabindex="0" title="Toque para tentar sincronizar agora"></span><button id="topMoreActions" class="small" type="button" aria-expanded="false">⋯</button><div id="topActionsMenu" class="top-actions-menu hidden"><button id="logoutBtn" class="small">Sair</button><button id="exportBtn" class="small">Exportar dados</button><button id="importBtn" class="small">Importar</button></div><input id="importFile" type="file" accept="application/json" class="hidden"></div>
 </header>
 <nav id="nav">
 <button class="active" data-page="today">Ritual diário</button>
@@ -987,6 +1029,7 @@ button.primary{background:linear-gradient(135deg,#9b55df,#6735a1)!important;bord
 <button data-page="failures">Falhas</button>
 <button data-page="settings">Configurações</button>
 <button data-page="admin" id="adminNavBtn" class="hidden">Administração</button>
+<button id="moreNavBtn" type="button" aria-expanded="false">Mais</button><div id="moreNavMenu" class="more-nav-menu hidden"></div>
 </nav>
 <main>
 <section id="page-today">
@@ -1000,7 +1043,7 @@ button.primary{background:linear-gradient(135deg,#9b55df,#6735a1)!important;bord
   <div class="dashboard-orb" aria-hidden="true"><span>⌁</span></div>
 </div>
   <div class="stats"><div class="stat"><strong id="doneCount">0</strong><span>Rituais cumpridos</span></div><div class="stat"><strong id="totalCount">0</strong><span>Rituais programados</span></div><div class="stat"><strong id="percentCount">0%</strong><span>Execução do dia</span></div></div>
-  <div class="dashboard-shortcuts" aria-label="Acessos rápidos">
+  <div class="dashboard-shortcuts hidden" aria-label="Acessos rápidos">
     <button type="button" class="shortcut-card" onclick="showPage('habits')"><span class="shortcut-icon">✧</span><span><strong>Rotina</strong><small>Hábitos e compromissos</small></span><b>↗</b></button>
     <button type="button" class="shortcut-card" onclick="showPage('training')"><span class="shortcut-icon">⌁</span><span><strong>Treino</strong><small>Fichas e evolução</small></span><b>↗</b></button>
     <button type="button" class="shortcut-card" onclick="showPage('physical')"><span class="shortcut-icon">◉</span><span><strong>Corpo</strong><small>Medidas e progresso</small></span><b>↗</b></button>
@@ -1823,4 +1866,13 @@ renderAll();
 registerCavernaSW();
 bootAuth();
 </script>
-</body></html>
+<script>
+// Progressive navigation menus
+(()=>{const mainIds=['today','habits','training','physical'];const extraIds=['mentor','independencia','books','gratitude','failures','settings','admin'];
+const nav=document.getElementById('nav'),more=document.getElementById('moreNavBtn'),menu=document.getElementById('moreNavMenu');
+if(more&&menu){extraIds.forEach(id=>{const original=nav.querySelector('button[data-page="'+id+'"]');if(original){const clone=document.createElement('button');clone.type='button';clone.textContent=original.textContent.trim()||({mentor:'Mentor',independencia:'Finanças'}[id]||id);clone.addEventListener('click',()=>{menu.classList.add('hidden');more.setAttribute('aria-expanded','false');showPage(id)});menu.appendChild(clone)}});more.addEventListener('click',()=>{const open=menu.classList.toggle('hidden')===false;more.setAttribute('aria-expanded',String(open))});document.addEventListener('click',e=>{if(!menu.contains(e.target)&&e.target!==more){menu.classList.add('hidden');more.setAttribute('aria-expanded','false')}})}
+const topBtn=document.getElementById('topMoreActions'),topMenu=document.getElementById('topActionsMenu');if(topBtn&&topMenu){topBtn.addEventListener('click',()=>{const open=topMenu.classList.toggle('hidden')===false;topBtn.setAttribute('aria-expanded',String(open))});document.addEventListener('click',e=>{if(!topMenu.contains(e.target)&&e.target!==topBtn){topMenu.classList.add('hidden');topBtn.setAttribute('aria-expanded','false')}})}
+})();
+
+document.addEventListener('click',e=>{const row=e.target.closest('.habit');if(!row||e.target.closest('input[type="checkbox"]'))return;const cb=row.querySelector('input[type="checkbox"]');if(cb){cb.checked=!cb.checked;cb.dispatchEvent(new Event('change',{bubbles:true}))}});
+</script></body></html>
