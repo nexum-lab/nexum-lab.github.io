@@ -1,0 +1,32 @@
+CAVERNA — como publicar esta versão
+===================================
+
+ANTES DE SUBSTITUIR O QUE ESTÁ NO GITHUB
+1. Abra a CAVERNA publicada, vá em Configurações e clique em "Exportar dados".
+   Guarde o arquivo .json (é o seu backup completo).
+
+PUBLICAÇÃO
+2. Envie TODO o conteúdo desta pasta para a raiz da branch publicada (main / root),
+   substituindo os arquivos existentes. Arquivos NOVOS nesta versão:
+   - assets/body-female.webp e assets/body-male.webp  (antes estavam embutidos no index.html)
+   - icon-180.png, icon-192.png, icon-512.png          (ícones do app e das notificações)
+   - docs/SUPABASE_CHECKLIST.md
+   Mantenha index.html, service-worker.js e manifest.webmanifest na MESMA pasta.
+3. Aguarde 1–2 minutos o GitHub Pages atualizar e abra o site. Se parecer a versão antiga,
+   recarregue com Ctrl+F5 (PC) ou feche e reabra o app (celular).
+4. No iPhone/Android, o ícone novo só aparece se você remover o atalho e adicionar de novo
+   à Tela de Início.
+
+NOTIFICAÇÕES PUSH
+- O push já foi validado no PC (Edge) e no iPhone — veja README-LEGACY.md. O envio roda no
+  Supabase (Edge Function caverna-push-reminders + Cron). Não publique chave privada VAPID
+  nem service_role no HTML ou no GitHub.
+- O arquivo SQL_subscriptions.sql citado em versões antigas não faz parte deste pacote.
+  Para conferir tabelas e permissões do seu Supabase, use docs/SUPABASE_CHECKLIST.md.
+
+QUANDO PUBLICAR NOVAS VERSÕES
+- Abra service-worker.js e troque o valor de CACHE_VERSION (ex.: caverna-v4-...). Isso
+  garante que o modo offline entregue a versão nova para todo mundo.
+
+O QUE MUDOU
+- Veja ATUALIZACAO-2026-11-24.md.
