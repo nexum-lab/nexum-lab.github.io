@@ -29,4 +29,4 @@ QUANDO PUBLICAR NOVAS VERSÕES
   garante que o modo offline entregue a versão nova para todo mundo.
 
 O QUE MUDOU
-- Veja ATUALIZACAO-2026-11-24.md.
+- Veja ATUALIZACAO-2026-11-27.md.

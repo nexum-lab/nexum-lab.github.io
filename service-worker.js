@@ -1,6 +1,6 @@
 // CAVERNA — service worker: push + modo offline.
 // Ao publicar uma versão nova do index.html, aumente o número em CACHE_VERSION.
-const CACHE_VERSION = 'caverna-v3-2026-11-24';
+const CACHE_VERSION = 'caverna-v5-2026-11-27';
 const SHELL = [
   './',
   './index.html',

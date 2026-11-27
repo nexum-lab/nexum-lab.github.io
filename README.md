@@ -10,7 +10,7 @@ Aplicação web de hábitos, treino, leitura, finanças e evolução pessoal, pu
 - `manifest.webmanifest`, `icon-*.png` — instalação como app (PWA).
 - `caverna-2.0/` — fundação técnica para a evolução futura (ainda não conectada ao banco).
 - `docs/SUPABASE_CHECKLIST.md` — consultas somente-leitura para conferir tabelas e permissões.
-- `ATUALIZACAO-2026-11-24.md` — o que mudou nesta versão e como testar.
+- `ATUALIZACAO-2026-11-27.md` — o que mudou nesta versão e como testar.
 - `README-LEGACY.md` — descrição funcional detalhada da aplicação.
 
 ## Publicação
