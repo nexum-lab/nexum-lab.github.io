@@ -1067,7 +1067,25 @@ button.primary{background:linear-gradient(135deg,#c8a4ff,#8c72d8);border-color:#
 </style>
 
 
-<style> .exercise-accordion{padding:0!important;overflow:hidden}.exercise-accordion summary{cursor:pointer;list-style:none;padding:14px;display:block}.exercise-accordion summary::-webkit-details-marker{display:none}.exercise-accordion summary:after{content:"＋";float:right;color:var(--accent,#a78bfa)}.exercise-accordion[open] summary:after{content:"−"}.exercise-set-content{padding:0 12px 12px}.set-edit-row{display:grid;grid-template-columns:minmax(60px,1fr) minmax(65px,.8fr) minmax(65px,.8fr) auto;gap:8px;align-items:center;margin:8px 0;padding:10px;background:rgba(120,120,120,.08);border-radius:12px}.set-edit-row label{font-size:12px}.set-edit-row input{width:100%;min-width:0;margin-top:4px}.set-number{display:flex;flex-direction:column}.series-actions{margin-top:12px}@media(max-width:520px){.set-edit-row{grid-template-columns:1fr 1fr;}.set-number{grid-column:1/-1}.set-edit-row button{grid-column:1/-1;width:100%}}</style>
+<style> .exercise-accordion{padding:0!important;overflow:hidden}.exercise-accordion summary{cursor:pointer;list-style:none;padding:14px;display:block}.exercise-accordion summary::-webkit-details-marker{display:none}.exercise-accordion summary:after{content:"＋";float:right;color:var(--accent,#a78bfa)}.exercise-accordion[open] summary:after{content:"−"}.exercise-set-content{padding:0 12px 12px}.set-edit-row{display:grid;grid-template-columns:minmax(60px,1fr) minmax(65px,.8fr) minmax(65px,.8fr) auto;gap:8px;align-items:center;margin:8px 0;padding:10px;background:rgba(120,120,120,.08);border-radius:12px}.set-edit-row label{font-size:12px}.set-edit-row input{width:100%;min-width:0;margin-top:4px}.set-number{display:flex;flex-direction:column}.series-actions{margin-top:12px}@media(max-width:520px){.set-edit-row{grid-template-columns:1fr 1fr;}.set-number{grid-column:1/-1}.set-edit-row button{grid-column:1/-1;width:100%}}
+/* Gratitude journal / lined paper visual */
+.gratitude-layout{display:grid;grid-template-columns:minmax(280px,0.8fr) minmax(360px,1.2fr);gap:22px;align-items:start}
+.gratitude-paper{position:relative;color:#29283a;background:linear-gradient(180deg,#fffdf7,#f8f3e8);border:1px solid #d8d0bd;border-radius:12px;box-shadow:0 14px 35px #0002;overflow:hidden;background-image:linear-gradient(90deg,transparent 0,transparent 46px,#d9828c55 47px,#d9828c55 48px,transparent 49px),repeating-linear-gradient(180deg,transparent 0,transparent 31px,#8aa6c355 32px,#8aa6c355 33px);}
+.gratitude-paper:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,#ffffff55,transparent 35%,#00000004);}
+.gratitude-paper-write{padding:22px 24px 24px 62px;min-height:440px}
+.gratitude-paper-title{font-family:Georgia,serif;font-size:20px;font-style:italic;color:#625278;margin:0 0 18px}
+.gratitude-paper-write label{color:#554e61;font-weight:600}
+.gratitude-paper-write input,.gratitude-paper-write textarea{background:transparent!important;border:0!important;border-bottom:1px solid #a9b6c8!important;border-radius:0!important;color:#29283a!important;box-shadow:none!important}
+.gratitude-paper-write textarea{min-height:190px;line-height:32px;resize:vertical;background-image:repeating-linear-gradient(180deg,transparent 0,transparent 31px,#8aa6c355 32px,#8aa6c355 33px)!important;padding-top:0!important}
+.gratitude-paper-write textarea::placeholder{color:#827d8c}
+.gratitude-entry{padding:18px 22px 18px 62px;margin-bottom:18px;min-height:155px}
+.gratitude-entry-date{font-family:Georgia,serif;font-style:italic;color:#63577b;font-size:14px;margin-bottom:10px}
+.gratitude-entry-text{white-space:pre-wrap;font-family:Georgia,serif;font-size:17px;line-height:32px;color:#2b2936;min-height:64px}
+.gratitude-entry-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;color:#837a8e;font-size:11px}
+.gratitude-empty{padding:26px 28px 26px 62px;min-height:140px;font-family:Georgia,serif}
+.gratitude-empty p{line-height:32px;color:#514b60}
+@media(max-width:850px){.gratitude-layout{grid-template-columns:1fr}.gratitude-paper-write{min-height:350px}.gratitude-entry{margin-bottom:14px}}
+</style>
 </head>
 <body>
 <section id="authScreen" class="auth-wrap"><div class="auth-card">
@@ -1258,9 +1276,9 @@ button.primary{background:linear-gradient(135deg,#c8a4ff,#8c72d8);border-color:#
 <div class="card span12"><h3>Registrar sessão de leitura</h3><form id="readingForm"><div class="formgrid"><div><label>Livro</label><select id="readingBook" required></select></div><div><label>Data</label><input id="readingDate" type="date" required></div><div><label>Páginas lidas</label><input id="readingPages" type="number" min="1" required></div><div><label>Nota (opcional)</label><input id="readingNote" placeholder="Ideia ou trecho para lembrar"></div></div><button class="primary" style="margin-top:12px">Registrar leitura</button></form><div id="readingHistory"></div></div></div>
 </section>
 
-<section id="page-gratitude" class="hidden">
-<h2>Caderno de gratidão</h2><p class="sub">Uma coisa por dia. Sem obrigação de ser grandiosa.</p>
-<div class="grid"><div class="card span4"><h3>Novo registro</h3><form id="gratitudeForm"><label>Data</label><input id="gratitudeDate" type="date" required><label>Hoje sou grato por...</label><textarea id="gratitudeText" required></textarea><button class="primary" style="margin-top:12px">Guardar registro</button></form></div><div class="card span8"><h3>Seu caderno</h3><div id="gratitudeHistory"></div></div></div>
+<section id="page-gratitude" class="hidden gratitude-page">
+<h2>Meu diário de gratidão</h2><p class="sub">Pequenos momentos que merecem ser lembrados.</p>
+<div class="gratitude-layout"><div class="gratitude-write"><div class="gratitude-paper gratitude-paper-write"><div class="gratitude-paper-title">Uma página para hoje</div><form id="gratitudeForm"><label>Data</label><input id="gratitudeDate" type="date" required><label>Hoje sou grato por...</label><textarea id="gratitudeText" required placeholder="Escreva sem pressa. Nem todo dia precisa ser extraordinário para ter algo bom..."></textarea><button class="primary" style="margin-top:12px">Guardar no diário</button></form></div></div><div class="gratitude-journal"><div id="gratitudeHistory"></div></div></div>
 </section>
 
 <section id="page-failures" class="hidden">
@@ -1683,7 +1701,7 @@ window.deleteBook=id=>{if(confirm("Excluir livro?")){data.books=data.books.filte
 $("readingDate").value=today();
 $("readingForm").onsubmit=e=>{e.preventDefault();let book=data.books.find(b=>b.id===$("readingBook").value),pages=+$("readingPages").value;if(!book||pages<1)return;data.readings.push({id:uid(),bookId:book.id,date:$("readingDate").value,pages,note:$("readingNote").value});if(book.total)book.current=Math.min(book.total,(book.current||0)+pages);if(book.total&&book.current>=book.total)book.status="finished";e.target.reset();$("readingDate").value=today();save()};
 function renderGratitude(){
-$("gratitudeHistory").innerHTML=data.gratitude.slice().reverse().map(g=>`<div class="listitem"><div class="meta">${esc(g.date)}</div><div>${esc(g.text)}</div><div class="actions" style="margin-top:8px"><button class="small danger" onclick="deleteGratitude('${g.id}')">Excluir</button></div>`).join("")||'<div class="empty">Nenhum registro ainda.</div>';
+$("gratitudeHistory").innerHTML=data.gratitude.slice().reverse().map((g,i)=>`<article class="gratitude-paper gratitude-entry"><div class="gratitude-entry-date">${esc(g.date)}</div><div class="gratitude-entry-text">${esc(g.text)}</div><div class="gratitude-entry-footer"><span>✦ Nexum · lembrança ${data.gratitude.length-i}</span><button class="small danger" onclick="deleteGratitude('${g.id}')">Excluir</button></div></article>`).join("")||'<div class="gratitude-paper gratitude-empty"><div class="gratitude-paper-title">Seu diário ainda está em branco</div><p>Comece registrando uma pequena coisa pela qual você é grato hoje.</p></div>';
 }
 window.deleteGratitude=id=>{data.gratitude=data.gratitude.filter(g=>g.id!==id);save()};
 function addGratitude(date,text){if(data.gratitude.some(g=>g.date===date)){alert("Já existe uma gratidão registrada para essa data. Edite ou exclua o registro no caderno.");return false}data.gratitude.push({id:uid(),date,text});return true}
