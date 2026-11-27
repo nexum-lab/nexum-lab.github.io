@@ -1062,6 +1062,52 @@ button.primary{background:linear-gradient(135deg,#c8a4ff,#8c72d8);border-color:#
 @media(prefers-reduced-motion:no-preference){.brand .mark{animation:nexumPulse 5s ease-in-out infinite}@keyframes nexumPulse{0%,100%{box-shadow:0 0 12px rgba(160,100,255,.12)}50%{box-shadow:0 0 24px rgba(160,100,255,.28)}}}
 </style>
 
+
+<style id="nexum-training-clean-redesign">
+/* Nexum Lab · Training module clean hierarchy */
+#page-training{--train-card:#15131d;--train-line:rgba(180,150,220,.14);}
+#page-training .training-home-header{margin:0 0 20px;padding:4px 0 16px;border-bottom:1px solid var(--train-line);}
+#page-training .training-home-header h2{font-size:clamp(24px,4vw,32px);letter-spacing:-.035em;margin:0}
+#page-training .training-home-header .sub{max-width:460px;line-height:1.5}
+#page-training #programCount{background:rgba(168,85,247,.10);border:1px solid var(--train-line);padding:8px 12px;border-radius:999px}
+#page-training .training-library-shell.card{background:transparent;border:0;box-shadow:none;padding:0;margin:0 0 20px}
+#page-training .training-library-heading{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px}
+#page-training .training-library-heading h3{font-size:17px;margin:5px 0 3px}
+#page-training .training-library-heading .meta{margin:0;font-size:12px}
+#page-training .program-card{background:linear-gradient(145deg,#17141f,#111018);border:1px solid var(--train-line);border-radius:16px;padding:15px 16px;margin:9px 0;transition:border-color .2s,transform .2s}
+#page-training .program-card:hover{border-color:rgba(185,140,245,.38);transform:translateY(-1px)}
+#page-training .program-card-main{align-items:center}
+#page-training .program-card-info{font-size:14px}
+#page-training .program-card-actions button{border-radius:9px}
+#page-training .program-select-btn{margin-top:12px;min-height:42px;border-radius:11px}
+#page-training .program-detail{padding-top:14px}
+#page-training .program-days{grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:9px}
+#page-training .program-day-detail{background:#12111a;border:1px solid rgba(180,150,220,.12);border-radius:13px;padding:13px}
+#page-training .program-day-title{margin-bottom:9px}
+#page-training .program-day-title strong{font-size:13px}
+#page-training .program-start-day{border-radius:10px;min-height:42px}
+#page-training .training-action-card{margin:9px 0;background:#14121b;border:1px solid var(--train-line);border-radius:14px}
+#page-training .training-action-card>summary{padding:13px 15px;min-height:64px}
+#page-training .training-action-card>summary>span> b{width:32px;height:32px;border-radius:10px;background:rgba(168,85,247,.08)}
+#page-training .training-action-card>summary strong{font-size:13px}
+#page-training .training-action-card>summary small{font-size:11px;line-height:1.4}
+#page-training .training-action-card[open]{border-color:rgba(185,140,245,.35)}
+#page-training .training-action-body{padding:14px}
+#page-training .training-action-body form{margin-top:10px}
+#page-training .training-action-body label{font-size:12px;margin-bottom:5px}
+#page-training .training-action-body input,#page-training .training-action-body select,#page-training .training-action-body textarea{border-radius:10px}
+#page-training .day-name-box{background:#12111a;border-color:var(--train-line)}
+#page-training .physical-template-card{background:#12111a;border-color:var(--train-line)!important}
+#page-training #workoutHistory .listitem{padding:10px 0}
+#page-training .workout-calendar{margin-bottom:12px}
+#page-training .workout-day-details{background:#12111a;border:1px solid var(--train-line);border-radius:13px;padding:12px}
+#page-training #trainingDayView h2{font-size:27px;letter-spacing:-.03em}
+#page-training #trainingDayView .card,#page-training #activeTrainingPanel{background:linear-gradient(145deg,#17141f,#111018);border:1px solid var(--train-line);border-radius:16px}
+#page-training .training-exercise{padding:13px 0}
+#page-training .timer-panel{background:rgba(30,20,44,.96);border-color:rgba(168,85,247,.35);backdrop-filter:blur(12px)}
+@media(max-width:600px){#page-training .training-home-header{align-items:center}#page-training .program-card{padding:13px}#page-training .program-card-actions{padding-left:0}#page-training .training-action-card>summary{padding:12px}#page-training .training-action-body{padding:12px}#page-training .program-days{grid-template-columns:1fr}}
+</style>
+
 </head>
 <body>
 <section id="authScreen" class="auth-wrap"><div class="auth-card">
