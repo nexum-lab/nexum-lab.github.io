@@ -865,6 +865,28 @@ nav button[data-page="mentor"]{margin:0}
 /* Nexum Lab training: separated functional screens */
 #page-training .training-screen-head{display:flex;align-items:center;gap:12px;margin:0 0 18px;flex-wrap:wrap}#page-training .training-screen-head>div{flex:1;min-width:120px}#page-training .training-screen-head h2{margin:3px 0 0}#page-training .training-back{border:0;background:transparent;color:#c5a5e8;padding:8px 4px;font-weight:650}#page-training .training-hub-feature{padding:24px;background:radial-gradient(ellipse at top right,#4b2c6b66,transparent 65%),linear-gradient(145deg,#21172e,#131119);border:1px solid #3c2b50;border-radius:20px;margin-bottom:16px}#page-training .training-hub-kicker{font-size:10px;letter-spacing:.18em;color:#c5a5e8;font-weight:800}#page-training .training-hub-feature h3{font-size:26px;margin:12px 0 6px}#page-training .training-hub-feature p{color:var(--muted);margin-bottom:18px}#page-training .training-hub-cta{width:100%;display:flex;justify-content:space-between;align-items:center;padding:14px 16px}#page-training .training-quick-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}#page-training .training-quick-grid button{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;text-align:left;display:flex;flex-direction:column;gap:6px;min-height:116px;color:var(--text)}#page-training .training-quick-icon{font-size:23px;color:#c4a1ff;margin-bottom:5px}#page-training .training-quick-grid small{color:var(--muted)}#page-training .training-hub-footer{margin-top:14px}#page-training .training-secondary{border:1px solid #554168;background:#1b1524;color:#d7b9f5;border-radius:12px;padding:12px 15px;width:100%}#page-training .training-library-shell,#page-training .training-form-shell,#page-training .training-free-shell,#page-training .training-history-shell{padding:18px}#page-training .training-library-shell .program-card{padding:15px;border-radius:16px}#page-training .training-library-shell .program-select-btn{border-radius:12px}#page-training .training-active-panel{border:1px solid #68488c;box-shadow:0 0 24px #7c3aed18}#page-training .training-screen{animation:trainingScreenIn .18s ease-out}@keyframes trainingScreenIn{from{opacity:.65;transform:translateY(4px)}to{opacity:1;transform:none}}@media(max-width:480px){#page-training .training-hub-feature{padding:20px}#page-training .training-quick-grid button{padding:13px;min-height:108px}#page-training .training-screen-head{gap:6px}#page-training .training-library-shell,#page-training .training-form-shell,#page-training .training-free-shell,#page-training .training-history-shell{padding:13px}}
 
+
+/* NEXUM LAB — portal entry experience */
+.auth-wrap{position:relative;isolation:isolate;overflow:hidden;min-height:100svh;background:radial-gradient(ellipse at 50% 50%,#24133c 0%,#0a0912 52%,#05050a 100%);padding:clamp(16px,4vw,48px)}
+.portal-scene{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;overflow:hidden;z-index:-1}
+.portal-rings{position:relative;width:min(68vw,760px);height:min(68vw,760px);min-width:440px;min-height:440px;border-radius:50%;transform:rotate(-18deg);filter:drop-shadow(0 0 40px #9b55ff55)}
+.portal-rings:before,.portal-rings:after{content:'';position:absolute;inset:8%;border-radius:50%;border:1px solid #9c6aff55;box-shadow:inset 0 0 50px #873cff25,0 0 45px #873cff30;animation:portalPulse 7s ease-in-out infinite}
+.portal-rings:after{inset:16%;border-color:#d7b2ff77;border-width:2px;box-shadow:0 0 30px #a855ff88,inset 0 0 45px #a855ff55;animation-delay:-2s}
+.portal-core{position:absolute;inset:22%;border-radius:50%;background:radial-gradient(ellipse at 50% 42%,#d5a6ff30 0%,#8a35ff24 24%,#3a146d55 52%,#08050d 72%);box-shadow:0 0 90px #8c37ff66,inset 0 0 60px #a45aff66;animation:portalBreath 5s ease-in-out infinite}
+.portal-core:before{content:'';position:absolute;inset:8%;border-radius:50%;border:1px dashed #d8b5ff66;animation:portalSpin 35s linear infinite}
+.portal-core:after{content:'';position:absolute;inset:15%;border-radius:50%;border:2px solid transparent;border-top-color:#e5caff;border-right-color:#9c58ff;filter:drop-shadow(0 0 14px #c084fc);animation:portalSpin 12s linear infinite reverse}
+.auth-card{position:relative;z-index:1;width:min(100%,460px);padding:clamp(25px,4vw,42px);border:1px solid #c7a5ff55;border-radius:24px;background:linear-gradient(145deg,#14101dcc,#08070dcc);backdrop-filter:blur(18px);box-shadow:0 25px 100px #000b,0 0 50px #7c3aed20}
+.auth-card:before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(120deg,#c084fc12,transparent 45%,#7c3aed0b);pointer-events:none}
+.auth-card .brand{justify-content:center;text-align:center}.auth-card .mark{margin:0 auto 10px;width:60px;height:60px;font-size:32px;border-radius:18px;box-shadow:0 0 30px #a855f755}
+.auth-card h2{text-align:center;font-size:clamp(22px,4vw,28px);letter-spacing:.08em;text-shadow:0 0 24px #a855f744}
+.auth-card .sub{text-align:center;max-width:340px;margin:0 auto 24px;color:#c2b4d6}
+.auth-card label{color:#cdb9eb}.auth-card input{background:#090711cc;border-color:#58406f}.auth-card input:focus{border-color:#b58aff;box-shadow:0 0 0 3px #a855f522}
+.auth-actions button.primary{background:linear-gradient(135deg,#b36aff,#7132c2);box-shadow:0 8px 24px #8b35df44}.auth-note{text-align:center;color:#9d8caf}
+#authMessage{text-align:center}
+@keyframes portalSpin{to{transform:rotate(360deg)}}@keyframes portalPulse{0%,100%{opacity:.45;transform:scale(.98)}50%{opacity:1;transform:scale(1.025)}}@keyframes portalBreath{0%,100%{transform:scale(.96);opacity:.7}50%{transform:scale(1.04);opacity:1}}
+@media(prefers-reduced-motion:reduce){.portal-core,.portal-rings:before,.portal-rings:after{animation:none}}
+@media(max-width:600px){.portal-rings{width:110vw;height:110vw;min-width:0;min-height:0}.auth-card{border-radius:20px}}
+
 </style>
 
 <style id="caverna-neon-noir-refresh">
@@ -1088,7 +1110,7 @@ button.primary{background:linear-gradient(135deg,#c8a4ff,#8c72d8);border-color:#
 </style>
 </head>
 <body>
-<section id="authScreen" class="auth-wrap"><div class="auth-card">
+<section id="authScreen" class="auth-wrap"><div class="portal-scene" aria-hidden="true"><div class="portal-rings"><div class="portal-core"></div></div><div class="portal-particles"></div></div><div class="auth-card">
 <div class="brand" style="margin-bottom:24px"><div class="mark">⌁</div><div><h1>NEXUM LAB</h1><p>DIMENSÃO DE DESENVOLVIMENTO</p></div></div>
 <h2 id="authTitle">ENTRE NA SUA DIMENSÃO.</h2><p class="sub" id="authSubtitle">Um espaço paralelo para experimentar, construir e evoluir.</p>
 <form id="authForm"><label for="authEmail">E-mail</label><input id="authEmail" type="email" autocomplete="email" required>
