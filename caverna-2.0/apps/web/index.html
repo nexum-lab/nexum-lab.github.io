@@ -6,7 +6,24 @@
     <meta name="theme-color" content="#09090d" />
     <meta name="description" content="Caverna — Life Management System" />
     <title>Caverna 2.0</title>
-  </head>
+  
+<style id="nexum-dimensional-atmosphere">
+:root{--bg:#080711;--panel:#12101c;--panel2:#1b1728;--line:#302641;--text:#eee9f7;--muted:#a29ab5;--accent:#b78cff;--ok:#8ed9c2}
+body{background:radial-gradient(ellipse at 50% -15%,rgba(113,54,190,.25),transparent 55%),radial-gradient(ellipse at 90% 40%,rgba(50,90,170,.09),transparent 40%),#080711;background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:linear-gradient(180deg,rgba(8,7,17,.06),rgba(8,7,17,.28));}
+.shell, #authScreen, nav#nav{position:relative;z-index:1}
+.brand .mark{border-color:#7652a2;color:#d8b8ff;background:linear-gradient(145deg,#251638,#10101b);box-shadow:0 0 22px rgba(160,100,255,.14)}
+.brand h1{background:linear-gradient(90deg,#eee4ff,#b78cff 55%,#87c8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand p{color:#a58bc9;letter-spacing:.16em}
+nav#nav::before{content:"NEXUM LAB";color:#d9c6f4}
+nav#nav::after{content:"PERSONAL DEVELOPMENT DIMENSION";color:#80679f}
+nav#nav button.active{background:linear-gradient(100deg,rgba(139,76,210,.20),rgba(68,92,170,.12));border-color:#67458d;color:#f0e4ff;box-shadow:inset 0 0 18px rgba(144,85,212,.08)}
+button.primary{background:linear-gradient(135deg,#c8a4ff,#8c72d8);border-color:#b995f3;color:#100b19}
+.card{box-shadow:0 8px 32px rgba(0,0,0,.12)}
+@media(prefers-reduced-motion:no-preference){.brand .mark{animation:nexumPulse 5s ease-in-out infinite}@keyframes nexumPulse{0%,100%{box-shadow:0 0 12px rgba(160,100,255,.12)}50%{box-shadow:0 0 24px rgba(160,100,255,.28)}}}
+</style>
+
+</head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
