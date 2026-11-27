@@ -861,6 +861,10 @@ nav button[data-page="mentor"]{margin:0}
  #page-training .training-action-body{padding:13px}
 }
 
+
+/* Nexum Lab training: separated functional screens */
+#page-training .training-screen-head{display:flex;align-items:center;gap:12px;margin:0 0 18px;flex-wrap:wrap}#page-training .training-screen-head>div{flex:1;min-width:120px}#page-training .training-screen-head h2{margin:3px 0 0}#page-training .training-back{border:0;background:transparent;color:#c5a5e8;padding:8px 4px;font-weight:650}#page-training .training-hub-feature{padding:24px;background:radial-gradient(ellipse at top right,#4b2c6b66,transparent 65%),linear-gradient(145deg,#21172e,#131119);border:1px solid #3c2b50;border-radius:20px;margin-bottom:16px}#page-training .training-hub-kicker{font-size:10px;letter-spacing:.18em;color:#c5a5e8;font-weight:800}#page-training .training-hub-feature h3{font-size:26px;margin:12px 0 6px}#page-training .training-hub-feature p{color:var(--muted);margin-bottom:18px}#page-training .training-hub-cta{width:100%;display:flex;justify-content:space-between;align-items:center;padding:14px 16px}#page-training .training-quick-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}#page-training .training-quick-grid button{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;text-align:left;display:flex;flex-direction:column;gap:6px;min-height:116px;color:var(--text)}#page-training .training-quick-icon{font-size:23px;color:#c4a1ff;margin-bottom:5px}#page-training .training-quick-grid small{color:var(--muted)}#page-training .training-hub-footer{margin-top:14px}#page-training .training-secondary{border:1px solid #554168;background:#1b1524;color:#d7b9f5;border-radius:12px;padding:12px 15px;width:100%}#page-training .training-library-shell,#page-training .training-form-shell,#page-training .training-free-shell,#page-training .training-history-shell{padding:18px}#page-training .training-library-shell .program-card{padding:15px;border-radius:16px}#page-training .training-library-shell .program-select-btn{border-radius:12px}#page-training .training-active-panel{border:1px solid #68488c;box-shadow:0 0 24px #7c3aed18}#page-training .training-screen{animation:trainingScreenIn .18s ease-out}@keyframes trainingScreenIn{from{opacity:.65;transform:translateY(4px)}to{opacity:1;transform:none}}@media(max-width:480px){#page-training .training-hub-feature{padding:20px}#page-training .training-quick-grid button{padding:13px;min-height:108px}#page-training .training-screen-head{gap:6px}#page-training .training-library-shell,#page-training .training-form-shell,#page-training .training-free-shell,#page-training .training-history-shell{padding:13px}}
+
 </style>
 
 <style id="caverna-neon-noir-refresh">
@@ -1062,52 +1066,6 @@ button.primary{background:linear-gradient(135deg,#c8a4ff,#8c72d8);border-color:#
 @media(prefers-reduced-motion:no-preference){.brand .mark{animation:nexumPulse 5s ease-in-out infinite}@keyframes nexumPulse{0%,100%{box-shadow:0 0 12px rgba(160,100,255,.12)}50%{box-shadow:0 0 24px rgba(160,100,255,.28)}}}
 </style>
 
-
-<style id="nexum-training-clean-redesign">
-/* Nexum Lab · Training module clean hierarchy */
-#page-training{--train-card:#15131d;--train-line:rgba(180,150,220,.14);}
-#page-training .training-home-header{margin:0 0 20px;padding:4px 0 16px;border-bottom:1px solid var(--train-line);}
-#page-training .training-home-header h2{font-size:clamp(24px,4vw,32px);letter-spacing:-.035em;margin:0}
-#page-training .training-home-header .sub{max-width:460px;line-height:1.5}
-#page-training #programCount{background:rgba(168,85,247,.10);border:1px solid var(--train-line);padding:8px 12px;border-radius:999px}
-#page-training .training-library-shell.card{background:transparent;border:0;box-shadow:none;padding:0;margin:0 0 20px}
-#page-training .training-library-heading{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px}
-#page-training .training-library-heading h3{font-size:17px;margin:5px 0 3px}
-#page-training .training-library-heading .meta{margin:0;font-size:12px}
-#page-training .program-card{background:linear-gradient(145deg,#17141f,#111018);border:1px solid var(--train-line);border-radius:16px;padding:15px 16px;margin:9px 0;transition:border-color .2s,transform .2s}
-#page-training .program-card:hover{border-color:rgba(185,140,245,.38);transform:translateY(-1px)}
-#page-training .program-card-main{align-items:center}
-#page-training .program-card-info{font-size:14px}
-#page-training .program-card-actions button{border-radius:9px}
-#page-training .program-select-btn{margin-top:12px;min-height:42px;border-radius:11px}
-#page-training .program-detail{padding-top:14px}
-#page-training .program-days{grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:9px}
-#page-training .program-day-detail{background:#12111a;border:1px solid rgba(180,150,220,.12);border-radius:13px;padding:13px}
-#page-training .program-day-title{margin-bottom:9px}
-#page-training .program-day-title strong{font-size:13px}
-#page-training .program-start-day{border-radius:10px;min-height:42px}
-#page-training .training-action-card{margin:9px 0;background:#14121b;border:1px solid var(--train-line);border-radius:14px}
-#page-training .training-action-card>summary{padding:13px 15px;min-height:64px}
-#page-training .training-action-card>summary>span> b{width:32px;height:32px;border-radius:10px;background:rgba(168,85,247,.08)}
-#page-training .training-action-card>summary strong{font-size:13px}
-#page-training .training-action-card>summary small{font-size:11px;line-height:1.4}
-#page-training .training-action-card[open]{border-color:rgba(185,140,245,.35)}
-#page-training .training-action-body{padding:14px}
-#page-training .training-action-body form{margin-top:10px}
-#page-training .training-action-body label{font-size:12px;margin-bottom:5px}
-#page-training .training-action-body input,#page-training .training-action-body select,#page-training .training-action-body textarea{border-radius:10px}
-#page-training .day-name-box{background:#12111a;border-color:var(--train-line)}
-#page-training .physical-template-card{background:#12111a;border-color:var(--train-line)!important}
-#page-training #workoutHistory .listitem{padding:10px 0}
-#page-training .workout-calendar{margin-bottom:12px}
-#page-training .workout-day-details{background:#12111a;border:1px solid var(--train-line);border-radius:13px;padding:12px}
-#page-training #trainingDayView h2{font-size:27px;letter-spacing:-.03em}
-#page-training #trainingDayView .card,#page-training #activeTrainingPanel{background:linear-gradient(145deg,#17141f,#111018);border:1px solid var(--train-line);border-radius:16px}
-#page-training .training-exercise{padding:13px 0}
-#page-training .timer-panel{background:rgba(30,20,44,.96);border-color:rgba(168,85,247,.35);backdrop-filter:blur(12px)}
-@media(max-width:600px){#page-training .training-home-header{align-items:center}#page-training .program-card{padding:13px}#page-training .program-card-actions{padding-left:0}#page-training .training-action-card>summary{padding:12px}#page-training .training-action-body{padding:12px}#page-training .program-days{grid-template-columns:1fr}}
-</style>
-
 </head>
 <body>
 <section id="authScreen" class="auth-wrap"><div class="auth-card">
@@ -1249,49 +1207,19 @@ button.primary{background:linear-gradient(135deg,#c8a4ff,#8c72d8);border-color:#
 </section>
 <section id="page-training" class="hidden">
  <div id="trainingHome">
-  <header class="training-home-header">
-   <div><h2>Treinos</h2><p class="sub">Sua rotina de treino, organizada sem excesso de informação.</p></div>
-   <span class="pill" id="programCount">0 fichas</span>
-  </header>
-  <div class="training-library-shell card">
-   <div class="training-library-heading"><div><span class="training-eyebrow">MINHA ROTINA</span><h3>Biblioteca de treinos</h3><p class="meta">Abra uma ficha para ver os dias e iniciar seu treino.</p></div></div>
-   <div id="trainingProgramList"></div>
+  <div id="trainingHubScreen" class="training-screen">
+   <header class="training-home-header"><div><span class="training-eyebrow">NEXUM LAB · TRAINING</span><h2>Central de treinamento</h2><p class="sub">Seu próximo protocolo. Sem distrações.</p></div><span class="pill" id="programCount">0 fichas</span></header>
+   <div class="training-hub-feature card"><div class="training-hub-kicker">SEU ESPAÇO DE EVOLUÇÃO</div><h3>Hora de evoluir.</h3><p>Escolha uma ficha e entre em execução.</p><button type="button" class="primary training-hub-cta" onclick="trainingNavigate('library')">Ver minhas fichas <span>→</span></button></div>
+   <div class="training-quick-grid"><button type="button" onclick="trainingNavigate('library')"><span class="training-quick-icon">▤</span><strong>Minhas fichas</strong><small>Rotinas e exercícios</small></button><button type="button" onclick="trainingNavigate('history')"><span class="training-quick-icon">▦</span><strong>Histórico</strong><small>Calendário de treinos</small></button><button type="button" onclick="trainingNavigate('progress')"><span class="training-quick-icon">↗</span><strong>Progressão</strong><small>Desempenho e cargas</small></button><button type="button" onclick="trainingNavigate('free')"><span class="training-quick-icon">＋</span><strong>Treino avulso</strong><small>Registrar sessão</small></button></div>
+   <div class="training-hub-footer"><button type="button" class="training-secondary" onclick="trainingNavigate('create')">＋ Criar uma ficha</button></div>
   </div>
-  <details class="training-action-card">
-   <summary><span><b>＋</b><span><strong id="programFormHeading">Criar nova ficha</strong><small>Monte os dias, exercícios, séries e cargas.</small></span></span><i aria-hidden="true">+</i></summary>
-   <div class="training-action-body">
-    <form id="trainingProgramForm">
-     <label>Nome da ficha</label><input id="programName" required placeholder="Ex.: Treino de hipertrofia">
-     <label>Dias desta ficha</label><div id="programDayTabs" class="actions day-tabs"></div>
-     <div class="day-name-box"><label for="programDayName">Nome opcional deste dia</label><input id="programDayName" maxlength="40" placeholder="Ex.: Push (deixe vazio para usar só A)"><p class="meta">O nome é opcional. Você pode usar apenas A, B, C... ou nomes como Push e Pull.</p></div>
-     <div class="training-form-grid"><div class="full"><label>Exercício</label><input id="programExerciseName" placeholder="Ex.: Supino reto"></div><div><label>Séries</label><input id="programSets" type="number" min="1" max="20" value="4"></div><div><label>Repetições mín.</label><input id="programRepsMin" type="number" min="1" value="8"></div><div><label>Repetições máx.</label><input id="programRepsMax" type="number" min="1" value="12"></div><div><label>Carga planejada (kg)</label><input id="programLoad" type="number" min="0" step="0.5" placeholder="Ex.: 40"></div><div class="full"><label>Descanso (segundos)</label><input id="programRest" type="number" min="0" max="900" step="5" value="90"></div></div>
-     <div class="actions" style="margin-top:12px"><button type="button" id="addProgramExercise">+ Adicionar exercício ao dia</button></div>
-     <div id="programDraftList"></div>
-     <div class="actions" style="margin-top:16px"><button type="button" id="resetProgramForm">Limpar ficha</button><button class="primary" type="submit">Salvar ficha completa</button></div>
-    </form>
-   </div>
-  </details>
-  <details class="training-action-card">
-   <summary><span><b>＋</b><span><strong>Registrar treino avulso</strong><small>Registre uma sessão sem usar uma ficha cadastrada.</small></span></span><i aria-hidden="true">+</i></summary>
-   <div class="training-action-body">
-    <div class="physical-template-card"><h3>Usar uma ficha da biblioteca</h3><p class="meta">Escolha a ficha e o dia realizado para preencher os exercícios automaticamente.</p><div class="formgrid"><div class="full"><label for="workoutTemplateProgram">Ficha cadastrada</label><select id="workoutTemplateProgram"><option value="">Selecionar ficha...</option></select></div><div class="full"><label for="workoutTemplateDay">Dia da ficha</label><select id="workoutTemplateDay" disabled><option value="">Selecione primeiro uma ficha</option></select></div></div><button type="button" id="loadWorkoutTemplate" class="small" style="margin-top:10px">Carregar exercícios deste dia</button><p id="workoutTemplateStatus" class="meta" role="status"></p></div>
-    <form id="workoutForm"><div class="formgrid"><div><label>Data</label><input id="workoutDate" type="date" required></div><div><label>Treino / grupo</label><input id="workoutName" required placeholder="Ex.: Treino de superiores"></div></div><div style="margin-top:16px"><div class="row"><h3 style="margin:0">Exercícios</h3><button type="button" class="small" id="addExerciseBtn">+ Adicionar exercício</button></div><div id="workoutExercises"></div></div><button class="primary" style="margin-top:12px">Salvar treino</button></form>
-   </div>
-  </details>
-  <details class="training-action-card">
-   <summary><span><b>↗</b><span><strong>Histórico de treinos</strong><small>Consulte suas sessões concluídas.</small></span></span><i aria-hidden="true">+</i></summary>
-   <div class="training-action-body">
-    <div id="workoutCalendar" class="workout-calendar"></div>
-    <div id="workoutDayDetails" class="workout-day-details"><div class="empty">Selecione um dia no calendário para consultar o treino.</div></div>
-   </div>
-  </details>
+  <div id="trainingLibraryScreen" class="training-screen hidden"><div class="training-screen-head"><button type="button" class="training-back" onclick="trainingNavigate('hub')">← Central</button><div><span class="training-eyebrow">ROTINAS</span><h2>Minhas fichas</h2></div><button type="button" class="primary small" onclick="trainingNavigate('create')">＋ Criar</button></div><div class="training-library-shell card"><div id="trainingProgramList"></div></div></div>
+  <div id="trainingCreateScreen" class="training-screen hidden"><div class="training-screen-head"><button type="button" class="training-back" onclick="trainingNavigate('library')">← Fichas</button><div><span class="training-eyebrow">EDITOR</span><h2 id="programFormHeading">Criar nova ficha</h2></div></div><div class="card training-form-shell"><form id="trainingProgramForm"><label>Nome da ficha</label><input id="programName" required placeholder="Ex.: Hipertrofia"><label>Dias desta ficha</label><div id="programDayTabs" class="actions day-tabs"></div><div class="day-name-box"><label for="programDayName">Nome opcional deste dia</label><input id="programDayName" maxlength="40" placeholder="Ex.: Push"><p class="meta">Use A, B, C... ou nomes como Push e Pull.</p></div><div class="training-form-grid"><div class="full"><label>Exercício</label><input id="programExerciseName" placeholder="Ex.: Supino reto"></div><div><label>Séries</label><input id="programSets" type="number" min="1" max="20" value="4"></div><div><label>Repetições mín.</label><input id="programRepsMin" type="number" min="1" value="8"></div><div><label>Repetições máx.</label><input id="programRepsMax" type="number" min="1" value="12"></div><div><label>Carga (kg)</label><input id="programLoad" type="number" min="0" step="0.5" placeholder="40"></div><div class="full"><label>Descanso (segundos)</label><input id="programRest" type="number" min="0" max="900" step="5" value="90"></div></div><button type="button" class="training-secondary" style="margin-top:12px" id="addProgramExercise">＋ Adicionar exercício ao dia</button><div id="programDraftList"></div><div class="actions" style="margin-top:16px"><button type="button" id="resetProgramForm">Limpar</button><button class="primary" type="submit">Salvar ficha</button></div></form></div></div>
+  <div id="trainingFreeScreen" class="training-screen hidden"><div class="training-screen-head"><button type="button" class="training-back" onclick="trainingNavigate('hub')">← Central</button><div><span class="training-eyebrow">SESSÃO LIVRE</span><h2>Treino avulso</h2></div></div><div class="card training-free-shell"><div class="physical-template-card"><h3>Carregar exercícios de uma ficha</h3><p class="meta">Preencha a sessão a partir de um treino salvo.</p><div class="formgrid"><div class="full"><label for="workoutTemplateProgram">Ficha</label><select id="workoutTemplateProgram"><option value="">Selecionar ficha...</option></select></div><div class="full"><label for="workoutTemplateDay">Dia</label><select id="workoutTemplateDay" disabled><option value="">Selecione primeiro a ficha</option></select></div></div><button type="button" id="loadWorkoutTemplate" class="small" style="margin-top:10px">Carregar exercícios</button><p id="workoutTemplateStatus" class="meta" role="status"></p></div><form id="workoutForm"><div class="formgrid"><div><label>Data</label><input id="workoutDate" type="date" required></div><div><label>Treino / grupo</label><input id="workoutName" required placeholder="Ex.: Superiores"></div></div><div style="margin-top:16px"><div class="row"><h3 style="margin:0">Exercícios</h3><button type="button" class="small" id="addExerciseBtn">＋ Adicionar</button></div><div id="workoutExercises"></div></div><button class="primary" style="margin-top:12px">Salvar treino</button></form></div></div>
+  <div id="trainingHistoryScreen" class="training-screen hidden"><div class="training-screen-head"><button type="button" class="training-back" onclick="trainingNavigate('hub')">← Central</button><div><span class="training-eyebrow">REGISTROS</span><h2>Histórico</h2></div></div><div class="card training-history-shell"><div id="workoutCalendar" class="workout-calendar"></div><div id="workoutDayDetails" class="workout-day-details"><div class="empty">Selecione um dia no calendário.</div></div></div></div>
+  <div id="trainingProgressScreen" class="training-screen hidden"><div class="training-screen-head"><button type="button" class="training-back" onclick="trainingNavigate('hub')">← Central</button><div><span class="training-eyebrow">PERFORMANCE</span><h2>Progressão</h2></div></div><div class="card"><p class="meta">Consulte a evolução de cargas nos registros de exercícios.</p><div id="trainingProgressContent"></div></div></div>
  </div>
- <div id="trainingDayView" class="hidden">
-  <div class="actions" style="margin-bottom:14px"><button type="button" id="backToTrainingLibrary">← Voltar à biblioteca</button></div>
-  <h2 id="selectedDayTitle">Treino</h2><p class="sub" id="selectedDaySubtitle"></p>
-  <div class="card"><div id="selectedDayExercises"></div><div class="actions" style="margin-top:14px"><button type="button" class="primary" id="startSelectedDay">Iniciar este treino</button></div></div>
-  <div id="activeTrainingPanel" class="card" style="margin-top:14px"><div class="row"><h3>Treino em andamento</h3><button id="finishTrainingBtn" class="primary hidden" type="button">Finalizar treino</button></div><div id="activeTraining"><div class="empty">Toque em “Iniciar este treino” quando estiver pronto.</div></div><div id="trainingTimer" class="timer-panel hidden"><div class="row"><div><div class="meta" id="timerCaption">Descanso</div><div class="timer-number" id="timerNumber">01:30</div></div><div class="actions"><button type="button" id="timerPauseBtn">Pausar</button><button type="button" id="timerSkipBtn">Pular descanso</button></div></div><div class="meta" id="timerMessage">Prepare-se para a próxima série.</div></div></div>
-</section>
+ <div id="trainingDayView" class="hidden"><div class="actions" style="margin-bottom:14px"><button type="button" id="backToTrainingLibrary">← Voltar à ficha</button></div><h2 id="selectedDayTitle">Treino</h2><p class="sub" id="selectedDaySubtitle"></p><div class="card"><div id="selectedDayExercises"></div><div class="actions" style="margin-top:14px"><button type="button" class="primary" id="startSelectedDay">Iniciar este treino</button></div></div><div id="activeTrainingPanel" class="card training-active-panel hidden" style="margin-top:14px"><div class="row"><h3>Treino em andamento</h3><button id="finishTrainingBtn" class="primary hidden" type="button">Finalizar treino</button></div><div id="activeTraining"><div class="empty">Toque em iniciar quando estiver pronto.</div></div><div id="trainingTimer" class="timer-panel hidden"><div class="row"><div><div class="meta" id="timerCaption">Descanso</div><div class="timer-number" id="timerNumber">01:30</div></div><div class="actions"><button type="button" id="timerPauseBtn">Pausar</button><button type="button" id="timerSkipBtn">Pular descanso</button></div></div><div class="meta" id="timerMessage">Prepare-se para a próxima série.</div></div></div></section>
 <section id="page-mentor" class="hidden">
  <h2>Mentor</h2><p class="sub">O tempo não espera. Entre na conversa e encare o que precisa mudar.</p>
  <div class="mentor-chat-shell">
@@ -1913,6 +1841,8 @@ function renderWorkoutHistory(){
  });
  renderWorkoutDayDetails(records);
 }
+function trainingNavigate(screen){const map={hub:"trainingHubScreen",library:"trainingLibraryScreen",create:"trainingCreateScreen",free:"trainingFreeScreen",history:"trainingHistoryScreen",progress:"trainingProgressScreen"};Object.values(map).forEach(id=>$(id)?.classList.add("hidden"));$(map[screen]||map.hub)?.classList.remove("hidden");if(screen==="library")renderTraining();if(screen==="history")renderWorkoutHistory();if(screen==="free")renderWorkoutTemplateOptions();if(screen==="progress")renderTrainingProgressScreen();if(screen==="create"){if(!editingProgramId)resetProgramForm();renderDayTabs();}window.scrollTo({top:0,behavior:"smooth"})}
+function renderTrainingProgressScreen(){const target=$("trainingProgressContent");if(!target)return;const sessions=data.workouts||[];const names=[...new Set(sessions.flatMap(w=>w.exercises||[]).map(e=>e.name).filter(Boolean))];if(!names.length){target.innerHTML='<div class="empty">Ainda não há registros suficientes para mostrar progressão.</div>';return}target.innerHTML=names.map(name=>{const rows=sessions.flatMap(w=>(w.exercises||[]).filter(e=>e.name===name).map(e=>({date:w.date,load:Number(e.load)||0}))).filter(r=>r.load>0).sort((a,b)=>a.date.localeCompare(b.date));return `<div class="training-day"><strong>${esc(name)}</strong><div class="meta">${rows.length} registro(s) · ${rows.length?esc(rows[rows.length-1].load)+" kg mais recente":"sem carga registrada"}</div>${rows.slice(-8).map(r=>`<div class="meta">${esc(r.date)} · ${esc(r.load)} kg</div>`).join("")}</div>`}).join("")}
 function renderTraining(){
  const list=$("trainingProgramList");if(!list)return;
  renderWorkoutTemplateOptions();
@@ -1941,9 +1871,9 @@ function renderTraining(){
  renderActiveTraining();
 }
 
-window.editProgram=id=>{const raw=(data.workoutPrograms||[]).find(p=>p.id===id);if(!raw)return;const p=normalizeProgram(raw);resetProgramForm();editingProgramId=id;$("programName").value=p.name;programDraftDays={};trainingDayKeys.forEach(ensureDraftDay);p.days.forEach(d=>{if(!trainingDayKeys.includes(d.key))return;programDraftDays[d.key]={label:d.label||"",exercises:d.exercises.map(x=>({...x,id:x.id||uid()}))}});$("programFormHeading").textContent="Editar ficha completa";$("trainingProgramForm").querySelector('button[type="submit"]').textContent="Salvar alterações";selectDraftDay("A");renderDayTabs();showTrainingHome();window.scrollTo({top:0,behavior:"smooth"})};
+window.editProgram=id=>{const raw=(data.workoutPrograms||[]).find(p=>p.id===id);if(!raw)return;const p=normalizeProgram(raw);resetProgramForm();editingProgramId=id;$("programName").value=p.name;programDraftDays={};trainingDayKeys.forEach(ensureDraftDay);p.days.forEach(d=>{if(!trainingDayKeys.includes(d.key))return;programDraftDays[d.key]={label:d.label||"",exercises:d.exercises.map(x=>({...x,id:x.id||uid()}))}});$("programFormHeading").textContent="Editar ficha completa";$("trainingProgramForm").querySelector('button[type="submit"]').textContent="Salvar alterações";selectDraftDay("A");renderDayTabs();trainingNavigate("create");window.scrollTo({top:0,behavior:"smooth"})};
 window.deleteProgram=id=>{if(confirm("Excluir esta ficha completa? O histórico de sessões será preservado.")){data.workoutPrograms=(data.workoutPrograms||[]).filter(p=>p.id!==id);save()}};
-function showTrainingHome(){$("trainingHome").classList.remove("hidden");$("trainingDayView").classList.add("hidden");selectedProgramDay=null;}
+function showTrainingHome(){$("trainingHome").classList.remove("hidden");$("trainingDayView").classList.add("hidden");selectedProgramDay=null;trainingNavigate("library");}
 function openProgramDay(id,key){const raw=(data.workoutPrograms||[]).find(p=>p.id===id);if(!raw)return;const p=normalizeProgram(raw),d=p.days.find(x=>x.key===key);if(!d)return;selectedProgramDay={programId:p.id,programName:p.name,day:d.key,dayLabel:d.label||"",exercises:d.exercises.map(x=>({...x}))};if(activeTraining&&activeTraining.programId!==p.id&&!confirm("Há um treino em andamento. Abrir outro dia vai descartar o progresso ainda não salvo. Continuar?"))return;if(activeTraining&&activeTraining.programId!==p.id){activeTraining=null;stopRestTimer()}$("trainingHome").classList.add("hidden");$("trainingDayView").classList.remove("hidden");$("selectedDayTitle").textContent=p.name+" · Dia "+d.key+(d.label?" — "+d.label:"");$("selectedDaySubtitle").textContent=d.exercises.length+" exercício(s). Esta tela mostra somente o dia selecionado.";$("selectedDayExercises").innerHTML=d.exercises.map((x,i)=>`<div class="training-day"><strong>${i+1}. ${esc(x.name)}</strong><div class="meta">${x.sets} séries · ${x.repsMin}–${x.repsMax} repetições · ${x.load!==""&&x.load!=null?esc(x.load)+" kg planejados":"carga não definida"} · descanso ${x.rest||0}s</div>${exerciseProgressionMarkup(p.id,p.name,x.name)}</div>`).join("");$("startSelectedDay").classList.toggle("hidden",!d.exercises.length);$("activeTrainingPanel").classList.add("hidden");renderActiveTraining();showPage("training")}
 function startProgramDay(id,key){openProgramDay(id,key);if(selectedProgramDay&&selectedProgramDay.programId===id&&selectedProgramDay.day===key){$("startSelectedDay").click()}}
 $("backToTrainingLibrary").onclick=()=>{if(activeTraining&&!confirm("Voltar à biblioteca? O progresso desta sessão será descartado."))return;if(activeTraining){activeTraining=null;stopRestTimer();restRemaining=0}showTrainingHome();renderTraining()};
@@ -2101,5 +2031,8 @@ $("constancyGrid").addEventListener("click",e=>{
 });
 registerCavernaSW();
 bootAuth();
+
+// Training screen navigation initialization
+try{trainingNavigate("hub")}catch(e){}
 </script>
 </body></html>
