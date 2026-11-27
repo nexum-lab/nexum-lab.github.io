@@ -887,6 +887,10 @@ nav button[data-page="mentor"]{margin:0}
 @media(prefers-reduced-motion:reduce){.portal-core,.portal-rings:before,.portal-rings:after{animation:none}}
 @media(max-width:600px){.portal-rings{width:110vw;height:110vw;min-width:0;min-height:0}.auth-card{border-radius:20px}}
 
+
+/* Nexum Lab: áreas Mente/Corpo */
+.nexum-area-switch{display:flex;gap:10px;margin:0 0 14px}.area-tab{flex:1;border:1px solid #3b3347;border-radius:15px;padding:15px 18px;background:linear-gradient(145deg,#17131f,#111015);color:#a99ab8;font-weight:900;letter-spacing:.13em}.area-tab.active[data-area="mind"]{border-color:#a06be0;color:#f0dcff;background:linear-gradient(135deg,#38204e,#1b1425);box-shadow:0 0 20px #a855f722}.area-tab.active[data-area="body"]{border-color:#48a5b6;color:#d6faff;background:linear-gradient(135deg,#183641,#142129);box-shadow:0 0 20px #4cc9df22}.nexum-subnav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.nexum-subnav button{font-size:12px;padding:8px 12px;border-radius:12px}.area-caption{width:100%;font-size:9px;letter-spacing:.18em;color:#857b91;font-weight:800;margin:0 0 3px}.meal-row{padding:13px;border:1px solid #2e3541;border-radius:13px;background:#121820;margin:9px 0}.meal-row h4{margin:0 0 5px}.meal-row .meal-meta{font-size:11px;color:#9aabb8}.meal-row.done{border-color:#347b69;background:#12251f}.meal-row .meal-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}.nutrition-day{display:grid;gap:10px}.nutrition-title{color:#9de5f0;font-size:10px;letter-spacing:.17em;font-weight:800}
+
 </style>
 
 <style id="caverna-neon-noir-refresh">
@@ -1124,15 +1128,18 @@ button.primary{background:linear-gradient(135deg,#c8a4ff,#8c72d8);border-color:#
   <div class="brand"><div class="mark">⌁</div><div><h1>NEXUM LAB</h1><p>DIMENSÃO DE DESENVOLVIMENTO</p></div></div>
   <div class="actions"><span id="userEmail" class="meta"></span><span id="syncStatus" class="sync-badge" role="status" aria-live="polite" tabindex="0" title="Toque para tentar sincronizar agora"></span><button id="logoutBtn" class="small">Sair</button></div>
 </header>
+<div id="nexumAreas" class="nexum-area-switch"><button type="button" class="area-tab active" data-area="mind">◈ MENTE</button><button type="button" class="area-tab" data-area="body">◈ CORPO</button></div>
+<div id="nexumSubnavMind" class="nexum-subnav"><span class="area-caption">MENTE · CONHECIMENTO E REFLEXÃO</span><button data-page="gratitude">Gratidão</button><button data-page="books">Biblioteca</button><button data-page="habits">Hábitos</button></div>
+<div id="nexumSubnavBody" class="nexum-subnav hidden"><span class="area-caption">CORPO · MOVIMENTO E NUTRIÇÃO</span><button data-page="training">Treinos</button><button data-page="physical">Evolução física</button><button data-page="nutrition">Alimentação</button></div>
 <nav id="nav">
 <button class="active" data-page="today"><span class="nl">Ritual diário</span><span class="ns">Hoje</span></button>
 <button data-page="habits">Hábitos</button>
-<button data-page="physical"><span class="nl">Evolução física</span><span class="ns">Corpo</span></button>
- <button data-page="training">Treinos</button>
+
+
 <button data-page="mentor" aria-label="Abrir Mentor">Mentor</button>
 <button data-page="independencia" aria-label="Abrir Finanças">♙ Finanças</button>
-<button data-page="books">Biblioteca</button>
-<button data-page="gratitude">Gratidão</button>
+
+
 <button data-page="failures">Falhas</button>
 <button data-page="settings">Configurações</button>
 <button data-page="admin" id="adminNavBtn" class="hidden">Administração</button>
@@ -1246,6 +1253,11 @@ button.primary{background:linear-gradient(135deg,#c8a4ff,#8c72d8);border-color:#
   <div class="physical-save-row"><p class="meta">Os campos são opcionais, exceto a data. Você pode registrar apenas o peso, por exemplo.</p><button class="primary" type="submit">Salvar avaliação</button></div>
  </form>
  <div class="card physical-history-card"><div class="physical-section-heading"><div><span class="physical-kicker">04 · ACOMPANHAMENTO</span><h3>Histórico corporal</h3></div><span class="pill" id="bodyRecordCount">0 avaliações</span></div><div id="bodyHistory"></div></div>
+</section>
+<section id="page-nutrition" class="hidden">
+ <div class="physical-heading"><div><span class="physical-kicker">CORPO · NUTRIÇÃO</span><h2>Alimentação</h2><p class="sub">Organize suas refeições e receba lembretes nos horários planejados.</p></div></div>
+ <div class="grid"><div class="card span4"><h3>Adicionar refeição</h3><form id="nutritionMealForm"><label>Nome</label><input id="mealName" required placeholder="Ex.: Café da manhã"><label>Horário</label><input id="mealTime" type="time" required><label>Descrição / alimentos</label><textarea id="mealDescription" placeholder="O que pretende comer..."></textarea><label><input id="mealPushEnabled" type="checkbox" checked> Lembrete de notificação</label><button class="primary" style="margin-top:12px">Salvar refeição</button></form><p class="meta">Ative as notificações do Nexum Lab em Configurações para receber avisos.</p></div>
+ <div class="card span8"><div class="row"><h3>Plano diário</h3><span class="pill" id="mealCount">0 refeições</span></div><div id="nutritionMealList" class="nutrition-day"></div></div></div>
 </section>
 <section id="page-training" class="hidden">
  <div id="trainingHome">
@@ -1493,7 +1505,7 @@ async function enablePushReminders(){
   if(!sub)sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:urlBase64ToUint8Array(VAPID_PUBLIC_KEY)});
   const {error}=await sb.from("caverna_push_subscriptions").upsert({user_id:currentUser.id,endpoint:sub.endpoint,subscription:sub.toJSON(),updated_at:new Date().toISOString()},{onConflict:"endpoint"});
   if(error)throw error;
-  status.textContent="Push ativado neste dispositivo.";
+  status.textContent="Push ativado neste dispositivo. Os lembretes de refeições serão programados enquanto o app estiver aberto.";scheduleMealNotifications();
  }catch(e){console.error(e);status.textContent="Não foi possível ativar: "+(e.message||"verifique as configurações do Supabase")}
 }
 $("pushSubscribe").onclick=enablePushReminders;
@@ -1514,7 +1526,7 @@ function migrateWorkoutPrograms(list){
  return [...modern,...grouped.values()];
 }
 function normalizeData(d){const out=normalizeDataRaw(d);sanitizeData(out);for(const p of out.workoutPrograms)for(const dy of (p.days||[]))if(typeof dy.key==="string")dy.key=dy.key.replace(/[^\w.:-]/g,"");for(const ss of out.workoutSessions)if(typeof ss.day==="string")ss.day=ss.day.replace(/[^\w.:-]/g,"");return out}
-function normalizeDataRaw(d){let b=freshData();return {...b,...(d||{}),profile:{...(d?.profile||{}),bodyGender:d?.profile?.bodyGender||""},water:{goalMl:Number(d?.water?.goalMl)||3000,daily:d?.water?.daily&&typeof d.water.daily==="object"?d.water.daily:{}},habits:Array.isArray(d?.habits)?d.habits:b.habits,checks:d?.checks||{},body:d?.body||[],workouts:d?.workouts||[],workoutPrograms:migrateWorkoutPrograms(d?.workoutPrograms),workoutSessions:Array.isArray(d?.workoutSessions)?d.workoutSessions:[],books:d?.books||[],readings:d?.readings||[],gratitude:d?.gratitude||[],failures:d?.failures||[]}}
+function normalizeDataRaw(d){let b=freshData();return {...b,...(d||{}),profile:{...(d?.profile||{}),bodyGender:d?.profile?.bodyGender||""},water:{goalMl:Number(d?.water?.goalMl)||3000,daily:d?.water?.daily&&typeof d.water.daily==="object"?d.water.daily:{}},habits:Array.isArray(d?.habits)?d.habits:b.habits,checks:d?.checks||{},body:d?.body||[],workouts:d?.workouts||[],workoutPrograms:migrateWorkoutPrograms(d?.workoutPrograms),workoutSessions:Array.isArray(d?.workoutSessions)?d.workoutSessions:[],books:d?.books||[],readings:d?.readings||[],gratitude:d?.gratitude||[],nutritionMeals:Array.isArray(d?.nutritionMeals)?d.nutritionMeals:[],nutritionChecks:d?.nutritionChecks||{},failures:d?.failures||[]}}
 async function loadUserData(user){
  currentUser=user;
  const {data:row,error}=await sb.from("caverna_data").select("payload,updated_at").eq("user_id",user.id).maybeSingle();if(error)throw error;
@@ -1596,8 +1608,16 @@ const defaultHabits=[
 let data=normalizeData(readLocalData());
 function save(){localStorage.setItem("cavernaData",JSON.stringify(data));renderAll();if(currentUser){markDirty();clearTimeout(saveTimer);saveTimer=setTimeout(()=>persistUserData(),500)}}
 function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function showPage(p){document.querySelectorAll("main > section[id^=\"page-\"]").forEach(s=>s.classList.add("hidden"));const page=$("page-"+p);if(!page){console.warn("Página não encontrada:",p);return}page.classList.remove("hidden");document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===p));renderAll();if(p==="mentor")loadMentorHistory()}
-window.showPage=showPage;
+function showPage(p){document.querySelectorAll("main > section[id^=\"page-\"]").forEach(s=>s.classList.add("hidden"));const page=$("page-"+p);if(!page){console.warn("Página não encontrada:",p);return}page.classList.remove("hidden");document.querySelectorAll("nav button, .nexum-subnav button").forEach(b=>b.classList.toggle("active",b.dataset.page===p));const area=["training","physical","nutrition"].includes(p)?"body":"mind";setNexumArea(area);renderAll();if(p==="nutrition")renderNutrition();if(p==="mentor")loadMentorHistory()}
+window.showPage=showPage;setNexumArea("mind");
+function setNexumArea(area){document.querySelectorAll(".area-tab").forEach(b=>b.classList.toggle("active",b.dataset.area===area));$("nexumSubnavMind").classList.toggle("hidden",area!=="mind");$("nexumSubnavBody").classList.toggle("hidden",area!=="body");document.querySelectorAll("#nav button[data-page]").forEach(b=>{const pg=b.dataset.page; b.classList.toggle("hidden",["books","gratitude","habits","training","physical","nutrition"].includes(pg))});}
+document.getElementById("nexumAreas").addEventListener("click",e=>{const b=e.target.closest("button[data-area]");if(!b)return;setNexumArea(b.dataset.area);const target=b.dataset.area==="body"?"training":"gratitude";showPage(target)});document.getElementById("nexumSubnavMind").addEventListener("click",e=>{const b=e.target.closest("button[data-page]");if(b)showPage(b.dataset.page)});document.getElementById("nexumSubnavBody").addEventListener("click",e=>{const b=e.target.closest("button[data-page]");if(b)showPage(b.dataset.page)});
+function renderNutrition(){const list=$("nutritionMealList");if(!list)return;const meals=(data.nutritionMeals||[]).slice().sort((a,b)=>(a.time||"").localeCompare(b.time||""));$("mealCount").textContent=meals.length+" refeição"+(meals.length===1?"":"s");list.innerHTML=meals.length?meals.map(m=>{const done=!!data.nutritionChecks[today()+"_"+m.id];return `<div class="meal-row ${done?"done":""}"><div class="row"><div><span class="nutrition-title">${esc(m.time)}</span><h4>${esc(m.name)}</h4><div class="meal-meta">${esc(m.description||"Sem descrição")}</div></div><span class="pill">${m.push?"🔔 Lembrete":""}</span></div><div class="meal-actions"><button type="button" class="small" onclick="toggleMealDone('${m.id}')">${done?"Desmarcar":"Marcar realizada"}</button><button type="button" class="small danger" onclick="deleteMeal('${m.id}')">Excluir</button></div></div>`}).join(""):`<div class="empty">Sua rotina alimentar ainda não foi planejada.</div>`;}
+function toggleMealDone(id){data.nutritionChecks[today()+"_"+id]=!data.nutritionChecks[today()+"_"+id];save();renderNutrition();}
+function deleteMeal(id){data.nutritionMeals=data.nutritionMeals.filter(m=>m.id!==id);save();renderNutrition();}
+$("nutritionMealForm").addEventListener("submit",e=>{e.preventDefault();data.nutritionMeals.push({id:crypto.randomUUID(),name:$('mealName').value.trim(),time:$('mealTime').value,description:$('mealDescription').value.trim(),push:$('mealPushEnabled').checked});save();e.target.reset();$('mealPushEnabled').checked=true;renderNutrition();scheduleMealNotifications();});
+function scheduleMealNotifications(){if(!('Notification' in window)||Notification.permission!=="granted")return;const meals=data.nutritionMeals.filter(m=>m.push);const now=new Date();meals.forEach(m=>{const [h,min]=m.time.split(':').map(Number);const next=new Date();next.setHours(h,min,0,0);if(next<=now)return;const delay=next-now;if(delay<24*60*60*1000)setTimeout(()=>{if(Notification.permission==='granted')new Notification('Nexum Lab · Hora da refeição',{body:m.name+(m.description?' — '+m.description:''),icon:'./icon-192.png'});},delay);});}
+
 $("nav").addEventListener("click",e=>{let b=e.target.closest("button[data-page]");if(b)showPage(b.dataset.page)});
 $("todayDate").textContent=new Date().toLocaleDateString("pt-BR",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
 function scheduled(h){let d=new Date().getDay();return h.active!==false&&(h.frequency!=="weekly"||(h.days||[]).includes(d))}
@@ -1973,7 +1993,7 @@ $('indMentorBtn').onclick=()=>{const x=indData(),debt=x.debts.reduce((a,d)=>a+Nu
 $('indTxDate').value=today();
 
 const pageVisible=p=>{const e=$("page-"+p);return !!e&&!e.classList.contains("hidden")};
-function renderAll(){renderToday();renderHabits();if(pageVisible("physical"))renderPhysical();renderBooks();renderGratitude();renderFailures();if(pageVisible("training"))renderTraining();if(pageVisible("independencia"))renderIndependencia()}
+function renderAll(){renderToday();renderHabits();if(pageVisible("physical"))renderPhysical();renderBooks();renderGratitude();renderFailures();if(pageVisible("training"))renderTraining();if(pageVisible("independencia"))renderIndependencia();if(pageVisible("nutrition"))renderNutrition()}
 $("exportBtn").onclick=()=>{let blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="caverna-backup-"+today()+".json";a.click();URL.revokeObjectURL(a.href)};
 $("importBtn").onclick=()=>$("importFile").click();
 $("importFile").onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let d=JSON.parse(await f.text());if(!d||typeof d!=="object"||Array.isArray(d)||!Array.isArray(d.habits)||!d.checks||typeof d.checks!=="object")throw 0;if(confirm("Substituir os dados atuais pelos dados do arquivo?")){try{localStorage.setItem("cavernaPreImportBackup",JSON.stringify(data))}catch(_){}data=normalizeData(d);save()}}catch{alert("Arquivo inválido.")}e.target.value=""};
